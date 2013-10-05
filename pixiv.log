@@ -1,0 +1,27 @@
+2013-08-29 21:34:49,865-logger_pixiv-ERROR-get data from http://cdn-pixiv.lolita.tw/rankings/20130828/pixiv_daily.json Error:'str' object has no attribute 'read'
+2013-08-29 21:39:43,618-logger_pixiv-INFO-open url: http://cdn-pixiv.lolita.tw/rankings/20130828/pixiv_daily.json-19
+2013-08-29 21:39:44,890-logger_pixiv-ERROR-get data from http://cdn-pixiv.lolita.tw/rankings/20130828/pixiv_daily.json Error:'str' object has no attribute 'read'-28
+2013-08-29 21:41:04,845-logger_pixiv-INFO-execute-19-open url: http://cdn-pixiv.lolita.tw/rankings/20130828/pixiv_daily.json
+2013-08-29 21:41:07,381-logger_pixiv-ERROR-execute-28-get data from http://cdn-pixiv.lolita.tw/rankings/20130828/pixiv_daily.json Error:'str' object has no attribute 'read'
+2013-08-29 21:41:57,700 - logger_pixiv - INFO - bindAPI - execute - line:19 - open url: http://cdn-pixiv.lolita.tw/rankings/20130828/pixiv_daily.json
+2013-08-29 21:42:08,586 - logger_pixiv - ERROR - bindAPI - execute - line:28 - get data from http://cdn-pixiv.lolita.tw/rankings/20130828/pixiv_daily.json Error:'str' object has no attribute 'read'
+2013-08-29 21:43:30,454[logger_pixiv]:INFO-{bindAPI-execute-line:19}: open url: http://cdn-pixiv.lolita.tw/rankings/20130828/pixiv_daily.json
+2013-08-29 21:43:32,016[logger_pixiv]:ERROR-{bindAPI-execute-line:28}: get data from http://cdn-pixiv.lolita.tw/rankings/20130828/pixiv_daily.json Error:'str' object has no attribute 'read'
+2013-08-29 22:13:58,562[logger_pixiv]:INFO-{bindAPI-execute-line:19}: open url: http://cdn-pixiv.lolita.tw/rankings/20130828/pixiv_daily.json
+2013-08-29 22:15:58,913[logger_pixiv]:ERROR-{bindAPI-execute-line:28}: get data from http://cdn-pixiv.lolita.tw/rankings/20130828/pixiv_daily.json Error:timed out
+2013-08-30 09:27:03,450[logger_pixiv]:INFO-{bindAPI-execute-line:19}: open url: http://cdn-pixiv.lolita.tw/rankings/20130828/pixiv_daily.json
+2013-08-30 09:28:29,838[logger_pixiv]:INFO-{bindAPI-execute-line:19}: open url: http://cdn-pixiv.lolita.tw/rankings/20130828/pixiv_daily.json
+2013-08-30 09:28:31,171[logger_pixiv]:ERROR-{bindAPI-execute-line:29}: get data from http://cdn-pixiv.lolita.tw/rankings/20130828/pixiv_daily.json Error:'str' object has no attribute 'read'
+2013-08-30 09:28:42,619[logger_pixiv]:INFO-{bindAPI-execute-line:19}: open url: http://cdn-pixiv.lolita.tw/rankings/20130828/pixiv_daily.json
+2013-08-30 09:28:43,986[logger_pixiv]:ERROR-{bindAPI-execute-line:29}: get data from http://cdn-pixiv.lolita.tw/rankings/20130828/pixiv_daily.json Error:'str' object has no attribute 'read'
+2013-08-30 09:29:09,000[logger_pixiv]:INFO-{bindAPI-execute-line:19}: open url: http://cdn-pixiv.lolita.tw/rankings/20130828/pixiv_daily.json
+2013-08-30 09:29:48,585[logger_pixiv]:INFO-{bindAPI-execute-line:19}: open url: http://cdn-pixiv.lolita.tw/rankings/20130828/pixiv_daily.json
+2013-08-30 09:29:57,006[logger_pixiv]:INFO-{bindAPI-execute-line:19}: open url: http://cdn-pixiv.lolita.tw/rankings/20130828/pixiv_daily.json
+2013-08-30 09:30:37,471[logger_pixiv]:INFO-{bindAPI-execute-line:19}: open url: http://cdn-pixiv.lolita.tw/rankings/20130828/pixiv_daily.json
+2013-08-30 09:30:49,068[logger_pixiv]:INFO-{bindAPI-execute-line:19}: open url: http://cdn-pixiv.lolita.tw/rankings/20130828/pixiv_daily.json
+2013-08-30 09:30:59,312[logger_pixiv]:INFO-{bindAPI-execute-line:19}: open url: http://cdn-pixiv.lolita.tw/rankings/20130828/pixiv_daily.json
+2013-08-30 09:31:28,706[logger_pixiv]:INFO-{bindAPI-execute-line:19}: open url: http://cdn-pixiv.lolita.tw/rankings/20130828/pixiv_daily.json
+2013-08-30 09:42:24,654[logger_pixiv]:INFO-{bindAPI-execute-line:19}: open url: http://cdn-pixiv.lolita.tw/rankings/20130828/pixiv_daily.json
+2013-08-30 09:42:54,338[logger_pixiv]:INFO-{bindAPI-execute-line:19}: open url: http://cdn-pixiv.lolita.tw/rankings/20130828/pixiv_daily.json
+2013-08-30 09:43:01,414[logger_pixiv]:INFO-{bindAPI-execute-line:19}: open url: http://cdn-pixiv.lolita.tw/rankings/20130828/pixiv_daily.json
+2013-08-30 09:43:06,378[logger_pixiv]:INFO-{bindAPI-execute-line:19}: open url: http://cdn-pixiv.lolita.tw/rankings/20130828/pixiv_daily.json
