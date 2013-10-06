@@ -21,13 +21,14 @@ def convert_to_utf8_str(arg):
 
 
 def ungzip(response):
-
 		if response.info().get('Content-Encoding') == 'gzip':
 			buf = StringIO(response.read())
 			f = gzip.GzipFile(fileobj=buf)
 			data = f.read()
+			buf.close()
 		else:
 			data = response.read()
 		return data
+
 
 		

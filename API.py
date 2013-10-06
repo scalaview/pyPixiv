@@ -5,6 +5,7 @@ from Pixiv import Pixiv
 import lxml.etree as etree
 import urllib2
 import utils
+from StringIO import StringIO
 
 class API(object):
 
@@ -72,15 +73,24 @@ class API(object):
 		referer = "%s/member_illust.php?mode=big&illust_id=%s" % (self.host, illust_id)
 		name = url.split('?')[0].split('/')[-1]
 		with open(self.path+name, 'wb') as f:
-			request = urllib2.Request(						
+			f.write(self.get_picture_stream(url, illust_id))
+
+	def get_picture_stream(self, url, illust_id, ungzip=True):
+		referer = "%s/member_illust.php?mode=big&illust_id=%s" % (self.host, illust_id)
+		request = urllib2.Request(						
 				url=url,
 				headers={
 								'Accept-Encoding':	'gzip, deflate',
 								'Accept':	'image/png,image/*;q=0.8,*/*;q=0.5',
 								'Referer':	referer,
 								})
-			response = urllib2.urlopen(request)
-			f.write(utils.ungzip(response))
+		response = urllib2.urlopen(request)
+		if not ungzip:
+			tmp_stream = utils.ungzip(response)
+		else:
+			tmp_stream = StringIO(response.read()).getvalue()
+		response.close()
+		return tmp_stream
 
 def main():
 	p = Pixiv('mulvren@126.com', '11908298')
