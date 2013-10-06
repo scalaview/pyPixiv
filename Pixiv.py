@@ -26,6 +26,10 @@ class Pixiv():
 
 	def login(self, proxy=False):
 		self.opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookielib.LWPCookieJar()))
+		self.opener.addheaders = [
+					('User-agent', 'Mozilla/5.0 (Windows NT 6.2; rv:23.0) Gecko/20100101 Firefox/23.0'),
+					('Referer',	'http://www.pixiv.net/')
+					]
 		# add proxy
 		urllib2.install_opener(self.opener)
 		data = urllib.urlencode(self.__login_data)

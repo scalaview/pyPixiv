@@ -67,10 +67,10 @@ class API(object):
 						allow_parameters =['p', 'date']
 				)
 
-	def download_big_picture(self, url, illust_id):
+	def download_picture(self, url, illust_id):
 		# 'src': 'http://i2.pixiv.net/img08/img/blade4649/38902616.jpg'
 		referer = "%s/member_illust.php?mode=big&illust_id=%s" % (self.host, illust_id)
-		name = url.split('/')[-1]
+		name = url.split('?')[0].split('/')[-1]
 		with open(self.path+name, 'wb') as f:
 			request = urllib2.Request(						
 				url=url,
@@ -78,7 +78,7 @@ class API(object):
 								'Accept-Encoding':	'gzip, deflate',
 								'Accept':	'image/png,image/*;q=0.8,*/*;q=0.5',
 								'Referer':	referer,
-								'User-Agent':	'Mozilla/5.0 (Windows NT 6.2; rv:23.0) Gecko/20100101 Firefox/23.0'})
+								})
 			response = urllib2.urlopen(request)
 			f.write(utils.ungzip(response))
 
@@ -86,7 +86,7 @@ def main():
 	p = Pixiv('mulvren@126.com', '11908298')
 	p.login()
 	api = API()
-	api.download_big_picture('http://i2.pixiv.net/img02/img/cle_masahiro/38896313.jpg', '38896313')
+	api.download_picture('http://i1.pixiv.net/img-inf/img/2013/10/05/00/03/21/38915840_s.jpg', '38915840')
 
 if __name__ == '__main__':
 	main()

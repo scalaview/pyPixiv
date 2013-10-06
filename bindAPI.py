@@ -4,7 +4,6 @@
 import time
 import urllib2
 import urllib
-import json
 import Pixiv
 import lxml.html as html
 import datetime
@@ -36,7 +35,7 @@ def bind_api(**config):
 			self.__url = "%s?%s" % (self.host + self.path, urllib.urlencode(self.paramters))
 			self.log = Pixiv.logger
 
-		def __member_illust(self, url):
+		def __medium_member_illust(self, url):
 				self.log.info("open url: %s" % url)
 				doc = openurl(url, Pixiv.timeout, self.use_gzip)
 				rated_count = doc.cssselect('dd.rated-count')[0].text
@@ -44,11 +43,12 @@ def bind_api(**config):
 				tags = []
 				for t in doc.cssselect('li.tag'):
 					tags.append(t.cssselect('a.text')[0].text)
+				mode = doc.cssselect('div.works_display')[0].iter('a').next().attrib['href']
+				src = doc.cssselect('div.works_display')[0].iter('img').next().attrib['src']
+				#TODO add comment
+				return rated_count, caption, tags, src, utils.parse_url_params(mode.split('?')[1])['mode']
 
-				# add comment
-				return rated_count, caption, tags
-
-		def __big_member_illust(self, illust_id):
+		def __big_mode(self, illust_id):
 			url = "%s/member_illust.php?mode=big&illust_id=%s" % (self.host, illust_id)
 			referer = "%s/member_illust.php?mode=medium&illust_id=%s" % (self.host, illust_id)
 			doc = openurl(url, Pixiv.timeout, self.use_gzip,
@@ -56,12 +56,29 @@ def bind_api(**config):
 			src = doc.xpath('/html/body/img')[0].attrib['src']
 			return src
 
+		def __manga_mode(self, illust_id):
+			url = "%s/member_illust.php?mode=manga&illust_id=%s" % (self.host, illust_id)
+			referer = "%s/member_illust.php?mode=medium&illust_id=%s" % (self.host, illust_id)
+			doc = openurl(url, Pixiv.timeout, self.use_gzip,
+									headers={'Referer':	referer})
+			src = [ x.attrib['data-src'] for x in doc.cssselect('img.image')]
+			return src
+
+		def __big_member_illust(self, illust_id, mode='big'):
+			if mode == 'big' :
+				return self.__big_mode(illust_id)
+			elif mode == 'manga' :
+				return self.__manga_mode(illust_id)
+
+
 		def execute(self):
 			self.log.info("open url: %s" % self.__url)
 			doc = openurl(self.__url, Pixiv.timeout, self.use_gzip)
 			result = []
 			for el in doc.cssselect('div.ranking-item'):
 				eldata = dict()
+				src = dict()
+				eldata['src'] = src
 				eldata['rank'] = el.attrib['id']
 				#user
 				user = el.cssselect('a.user-container')[0]
@@ -71,9 +88,11 @@ def bind_api(**config):
 				dictuser = {'id': user_id, 'icon': user_icon, 'name': user_name}
 				eldata['user'] = dictuser
 
+				src['small'] = el.cssselect('img._thumbnail')[0].attrib['src']
+
 				etitle = el.cssselect('a.title')[0]
 				eldata['title'] = etitle.text
-				# member_illust.php?mode=medium&illust_id=38892600&ref=rn-b-1-title&uarea=male_r18
+				#EXAMPLE member_illust.php?mode=medium&illust_id=38892600&ref=rn-b-1-title&uarea=male_r18
 				href = etitle.attrib['href']
 				eldata['illust_id'] = utils.parse_url_params(href.split('?')[1])['illust_id']
 
@@ -83,8 +102,8 @@ def bind_api(**config):
 				
 				eldata['date'] = el.cssselect('dl.inline-list')[1].getchildren()[1].text
 
-				eldata['rated_count'], eldata['caption'], eldata['tags'] = self.__member_illust(self.host + "/" + href)
-				eldata['src'] = self.__big_member_illust(eldata['illust_id'] )
+				eldata['rated_count'], eldata['caption'], eldata['tags'], src['medium'], mode = self.__medium_member_illust(self.host + "/" + href)
+				src['big'] = self.__big_member_illust(eldata['illust_id'], mode)
 				result.append(eldata)
 				break
 
@@ -118,7 +137,7 @@ if __name__ == '__main__':
 	print p.login()
 	c = bind_api(
 						path="/ranking.php",
-						mode="male_r18",
+						mode="male",
 						allow_parameters =['p']
 				)
 	print c(p='1')
