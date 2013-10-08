@@ -93,7 +93,7 @@ class API(object):
 		return tmp_stream
 
 def main():
-	p = Pixiv('mulvren@126.com', '11908298')
+	p = Pixiv('youraccount', 'yourpwd')
 	p.login()
 	api = API()
 	api.download_picture('http://i1.pixiv.net/img-inf/img/2013/10/05/00/03/21/38915840_s.jpg', '38915840')

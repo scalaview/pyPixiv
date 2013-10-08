@@ -105,8 +105,6 @@ def bind_api(**config):
 				eldata['rated_count'], eldata['caption'], eldata['tags'], src['medium'], mode = self.__medium_member_illust(self.host + "/" + href)
 				src['big'] = self.__big_member_illust(eldata['illust_id'], mode)
 				result.append(eldata)
-				break
-
 			return result
 
 
@@ -129,11 +127,11 @@ def openurl(url, timeout, use_gzip=True, headers={}):
 			connection.close()
 			return doc
 		except Exception, e:
-			raise "open url "+ url +" error : " + e
+			raise "open url: %s error(%s): %s" % (url, e.errno, e.strerror)
 						
 if __name__ == '__main__':
 	# /ranking.php
-	p = Pixiv.Pixiv('mulvren@126.com', '11908298')
+	p = Pixiv.Pixiv('youraccout', 'yourpwd')
 	print p.login()
 	c = bind_api(
 						path="/ranking.php",
