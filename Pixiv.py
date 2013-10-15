@@ -41,7 +41,7 @@ class Pixiv():
 			return False
 
 def main():
-	p = Pixiv('mulvren@126.com', '11908298')
+	p = Pixiv('youraccout', 'yourpwd')
 	print p.login()
 
 if __name__ == '__main__':
